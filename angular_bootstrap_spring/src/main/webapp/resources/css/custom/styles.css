@@ -1,0 +1,56 @@
+body {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen {
+    body {
+        max-width: 1024px;
+    }
+}
+
+@media tablet {
+    body {
+        max-width: 768px !important;
+    }
+}
+
+/*************************
+ *        Layouts        *
+ ************************/ 
+
+div.menu {
+	padding-bottom:	25px;
+}
+
+div.section {
+	border: 		1px solid black;
+	border-radius: 	15px;
+	padding: 		5px;
+}
+
+div.filter-label {
+	margin-top:  -15px;
+}
+
+div.panel-content {
+	width: 		150px;
+	display:	inline;
+}
+
+div.editable-content {
+    min-height:	40px;
+}
+
+div.inline {
+	display: 		inline-block;
+	margin-right: 	5px;
+}
+
+/*************************
+ *   Bootstrap Enhanced  *
+ ************************/ 
+ 
+ .dropdown {
+ 	cursor:		pointer !important; 
+ }

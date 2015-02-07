@@ -1,0 +1,60 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+.page {
+	min-height: 100%;
+	position: relative;
+}
+
+.header {
+	margin: 0px 10px 0px 0px;
+	width: 100%;
+	text-align: right;
+}
+
+.content {
+	padding: 10px;
+	padding-bottom: 20px; /* Height of the footer element */
+}
+
+.menu {
+	padding: 50px 10px 0px 10px;
+	width: 200px;
+	float: left;
+}
+
+.body {
+	margin: 50px 10px 0px 250px;
+}
+
+.footer {
+	clear: both;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	width: 100%;
+	height: 20px;
+}
+
+.textarea {
+	width: 100%;
+	font-size: 10pt;
+	display: block;
+	background-color: #F8F8F8;
+	height: 200px;
+	resize: none;
+	border: 1px solid #CCC;
+}
+
+.input {
+	resize: none;
+	font-size: 10pt;
+	display: block;
+	background-color: #F8F8F8;
+	max-width: 250px;
+	border: 1px solid #CCC;
+}
