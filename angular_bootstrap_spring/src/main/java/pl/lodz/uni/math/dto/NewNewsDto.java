@@ -2,25 +2,20 @@ package pl.lodz.uni.math.dto;
 
 import java.util.Date;
 
-public class NewsDto {
+public class NewNewsDto {
 	private String title;
 	private String text;
 	private String author;
-	private int plus;
-	private int minus;
 	private String Category;
 	private Date CreateDate;
 	private Long link;
 	private String image;
 
-	public NewsDto(String title, String text, String author, int plus, int minus, String category, Date createDate, Long link,
-			String image) {
+	public NewNewsDto(String title, String text, String author, String category, Date createDate, Long link, String image) {
 		super();
 		this.title = title;
 		this.text = text;
 		this.author = author;
-		this.plus = plus;
-		this.minus = minus;
 		Category = category;
 		CreateDate = createDate;
 		this.link = link;
@@ -49,22 +44,6 @@ public class NewsDto {
 
 	public void setAuthor(String author) {
 		this.author = author;
-	}
-
-	public int getPlus() {
-		return plus;
-	}
-
-	public void setPlus(int plus) {
-		this.plus = plus;
-	}
-
-	public int getMinus() {
-		return minus;
-	}
-
-	public void setMinus(int minus) {
-		this.minus = minus;
 	}
 
 	public String getCategory() {

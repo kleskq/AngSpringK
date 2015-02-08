@@ -9,5 +9,7 @@ public interface NewsDao {
 	public List<News> getAll();
 	
 	public boolean saveNews(News news);
+
+	public News getNews(long id);
 	
 }
