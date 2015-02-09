@@ -3,6 +3,8 @@ package pl.lodz.uni.math.api.api.controller.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,27 +23,39 @@ public class NewsController {
 	@Autowired
 	private NewsService newsService;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 	@RequestMapping(value = "/rest/newslist", method = RequestMethod.GET)
 	public List<NewsListDto> getNewsList() {
 		return newsService.getAll();
 	}
-	
+
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 	@RequestMapping(value = "/rest/news/{id:.+}", method = RequestMethod.GET)
 	public NewsDto getNews(@PathVariable("id") long id) {
 		return newsService.getNews(id);
 	}
-	
+
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 	@RequestMapping(value = "/rest/savenews", method = RequestMethod.POST, produces = "application/json")
-    public boolean saveUser(@RequestBody NewNewsDto newNewsDto) {
-		newNewsDto.setAuthor(SecurityContextHolder.getContext()
-				.getAuthentication().getName());
-        return newsService.saveNews(newNewsDto);
-    }
-	
+	public boolean saveUser(@RequestBody NewNewsDto newNewsDto) {
+		newNewsDto.setAuthor(SecurityContextHolder.getContext().getAuthentication().getName());
+		return newsService.saveNews(newNewsDto);
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 	@RequestMapping(value = "/rest/ratenote", method = RequestMethod.POST, produces = "application/json")
-    public boolean saveUser(@RequestBody RateDto rateDto) {
-		rateDto.setUserName(SecurityContextHolder.getContext()
-				.getAuthentication().getName());
-        return newsService.saveRate(rateDto);
-    }
+	public boolean saveUser(@RequestBody RateDto rateDto) {
+		rateDto.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		return newsService.saveRate(rateDto);
+	}
+
+	@SuppressWarnings("unchecked")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+	@RequestMapping(value = "/rest/isadmin", method = RequestMethod.GET)
+	public boolean isAdmin() {
+
+		List<GrantedAuthority> list = (List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication()
+				.getAuthorities();
+		return list.get(0).getAuthority().equals("ROLE_ADMIN");
+	}
 }
