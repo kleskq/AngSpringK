@@ -11,5 +11,7 @@ public interface NewsDao {
 	public boolean saveNews(News news);
 
 	public News getNews(long id);
+
+	public long getNewsCount();
 	
 }

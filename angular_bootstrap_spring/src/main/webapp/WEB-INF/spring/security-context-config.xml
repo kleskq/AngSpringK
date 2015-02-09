@@ -1,5 +1,7 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                     http://www.springframework.org/schema/security 
@@ -18,18 +20,39 @@
 		is a remember-me user isAuthenticated() Returns true if the user is not anonymous 
 		isFullyAuthenticated() Returns true if the user is not an anonymous or a 
 		remember-me user -->
-	<http pattern="/resources/**" security="none" />
+	<http auto-config="true">
+		<intercept-url pattern="/admin**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/rest**" access="ROLE_USER,ROLE_ADMIN" />
+		<intercept-url pattern="/angular**" access="ROLE_USER,ROLE_ADMIN" />
+		<logout logout-success-url="/" />
 
-	<http use-expressions="true">
-		<http-basic entry-point-ref="unauthorisedEntryPoint" />
-		<intercept-url pattern="/**" access="permitAll" />
-		<logout invalidate-session="true" delete-cookies="JSESSIONID" />
-		<session-management session-fixation-protection="newSession" />
+	<form-login login-page="/auth/login"
+			authentication-failure-url="/auth/login?error=true"
+			default-target-url="/home" />
+
+		<logout invalidate-session="true" logout-success-url="/auth/login"
+			logout-url="/auth/logout" />
+
+		<custom-filter ref="captchaCaptureFilter" before="FORM_LOGIN_FILTER" />
+		<custom-filter ref="captchaVerifierFilter" after="FORM_LOGIN_FILTER" />
 	</http>
+
+	<!-- For capturing CAPTCHA fields -->
+	<beans:bean id="captchaCaptureFilter" class="pl.lodz.uni.math.filters.captcha.CaptchaCaptureFilter" />
+
+	<!-- For verifying CAPTCHA fields -->
+	<!-- Private key is assigned by the reCATPCHA service -->
+	<beans:bean id="captchaVerifierFilter" class="pl.lodz.uni.math.filters.captcha.CaptchaVerifierFilter"
+		p:useProxy="false" p:proxyPort="" p:proxyHost=""
+		p:failureUrl="/auth/login?error=true"
+		p:captchaCaptureFilter-ref="captchaCaptureFilter" p:privateKey="6LeGAQATAAAAAHX024h7xgWfBkJFkVMRGKrkwu-Z" />
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="customUserDetailsService">
 			<password-encoder hash="plaintext"></password-encoder>
 		</authentication-provider>
 	</authentication-manager>
+
+
+
 </beans:beans>

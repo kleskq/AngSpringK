@@ -7,19 +7,7 @@
 
 		<body>
 			<div class="body">
-				<table width="100%">
-					<tr>
-						<th align="left">User Name</th>
-						<th align="left">Status</th>
-					</tr>
-					<c:forEach items="${users}" var="user">
-
-						<tr>
-							<td><c:out value="${user.userName}" />
-							<td><c:out value="${user.isEnabled}" />
-						</tr>
-					</c:forEach>
-				</table>
+				News on the server: <c:out value="${newsCount}" />
 			</div>
 		</body>
 	</tiles:putAttribute>

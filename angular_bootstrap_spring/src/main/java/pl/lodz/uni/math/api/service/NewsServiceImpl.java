@@ -94,4 +94,9 @@ public class NewsServiceImpl implements NewsService {
 		rate.setRating(rating);
 		return rateDao.saveRating(rate);
 	}
+
+	@Override
+	public long getNewsCount() {
+		return newsDao.getNewsCount();
+	}
 }

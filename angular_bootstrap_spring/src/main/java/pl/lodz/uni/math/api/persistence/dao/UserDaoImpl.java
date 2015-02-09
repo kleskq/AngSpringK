@@ -19,12 +19,20 @@ public class UserDaoImpl implements UserDao {
 	@Transactional
 	@Override
 	public User getUser(String userName) {
-		List<User> user = sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("UserName", userName)).list();
+		List<User> user = sessionFactory.getCurrentSession().createCriteria(User.class)
+				.add(Restrictions.eq("userName", userName)).list();
 		if (user.isEmpty()) {
 			return null;
 		} else {
 			return user.get(0);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	@Override
+	public List<User> getUsers() {
+		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
 	}
 
 }

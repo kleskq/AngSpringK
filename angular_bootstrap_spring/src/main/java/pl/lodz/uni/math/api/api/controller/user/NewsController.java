@@ -3,6 +3,7 @@ package pl.lodz.uni.math.api.api.controller.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +33,15 @@ public class NewsController {
 	
 	@RequestMapping(value = "/rest/savenews", method = RequestMethod.POST, produces = "application/json")
     public boolean saveUser(@RequestBody NewNewsDto newNewsDto) {
-		newNewsDto.setAuthor("user");
+		newNewsDto.setAuthor(SecurityContextHolder.getContext()
+				.getAuthentication().getName());
         return newsService.saveNews(newNewsDto);
     }
 	
 	@RequestMapping(value = "/rest/ratenote", method = RequestMethod.POST, produces = "application/json")
     public boolean saveUser(@RequestBody RateDto rateDto) {
-		rateDto.setUserName("user");
+		rateDto.setUserName(SecurityContextHolder.getContext()
+				.getAuthentication().getName());
         return newsService.saveRate(rateDto);
     }
 }

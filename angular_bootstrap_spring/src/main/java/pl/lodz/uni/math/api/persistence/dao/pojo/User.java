@@ -22,7 +22,7 @@ public class User implements Serializable {
 	@GeneratedValue
 	@Column(name = "UserId")
 	private int id;
-	@Column(name = "UserName", unique = true)
+	@Column(name = "userName")
 	private String userName;
 	@Column(name = "Password")
 	private String password;

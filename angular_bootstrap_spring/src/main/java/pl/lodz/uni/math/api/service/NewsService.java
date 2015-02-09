@@ -15,4 +15,6 @@ public interface NewsService {
 	public boolean saveNews(NewNewsDto newNewsDto);
 
 	public boolean saveRate(RateDto rateDto);
+
+	public long getNewsCount();
 }
