@@ -12,9 +12,10 @@ public class NewsDto {
 	private Date CreateDate;
 	private Long link;
 	private String image;
+	private int rating;
 
 	public NewsDto(String title, String text, String author, int plus, int minus, String category, Date createDate, Long link,
-			String image) {
+			String image,int rating) {
 		super();
 		this.title = title;
 		this.text = text;
@@ -25,6 +26,7 @@ public class NewsDto {
 		CreateDate = createDate;
 		this.link = link;
 		this.image = image;
+		this.rating = rating;
 	}
 
 	public String getTitle() {
@@ -99,4 +101,13 @@ public class NewsDto {
 		this.image = image;
 	}
 
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	
 }

@@ -13,6 +13,7 @@ import pl.lodz.uni.math.api.service.NewsService;
 import pl.lodz.uni.math.dto.NewNewsDto;
 import pl.lodz.uni.math.dto.NewsDto;
 import pl.lodz.uni.math.dto.NewsListDto;
+import pl.lodz.uni.math.dto.RateDto;
 
 @RestController
 public class NewsController {
@@ -31,6 +32,13 @@ public class NewsController {
 	
 	@RequestMapping(value = "/rest/savenews", method = RequestMethod.POST, produces = "application/json")
     public boolean saveUser(@RequestBody NewNewsDto newNewsDto) {
+		newNewsDto.setAuthor("user");
         return newsService.saveNews(newNewsDto);
+    }
+	
+	@RequestMapping(value = "/rest/ratenote", method = RequestMethod.POST, produces = "application/json")
+    public boolean saveUser(@RequestBody RateDto rateDto) {
+		rateDto.setUserName("user");
+        return newsService.saveRate(rateDto);
     }
 }

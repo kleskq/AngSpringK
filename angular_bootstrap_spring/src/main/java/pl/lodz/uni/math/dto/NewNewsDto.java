@@ -11,6 +11,10 @@ public class NewNewsDto {
 	private Long link;
 	private String image;
 
+	public NewNewsDto() {
+		super();
+	}
+
 	public NewNewsDto(String title, String text, String author, String category, Date createDate, Long link, String image) {
 		super();
 		this.title = title;
