@@ -1,5 +1,6 @@
 package pl.lodz.uni.math.api.api.controller.user;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class NewsController {
 	@RequestMapping(value = "/rest/savenews", method = RequestMethod.POST, produces = "application/json")
 	public boolean saveUser(@RequestBody NewNewsDto newNewsDto) {
 		newNewsDto.setAuthor(SecurityContextHolder.getContext().getAuthentication().getName());
+		Date date = new Date();
+		newNewsDto.setCreateDate(date);
+		newNewsDto.setLink(date.getTime());
 		return newsService.saveNews(newNewsDto);
 	}
 

@@ -43,10 +43,25 @@ public class RateDaoImpl implements RateDao {
 		}
 	}
 
+	@Transactional
 	@Override
 	public boolean saveRating(Rate rate) {
 		sessionFactory.getCurrentSession().save(rate);
 		return true;
+	}
+
+	@Transactional
+	@Override
+	public long countPlusRatings(int id) {
+		return sessionFactory.getCurrentSession().createCriteria(Rate.class, "rate")
+				.createAlias("rate.news", "news").add(Restrictions.eq("news.newsId", id)).add(Restrictions.eq("rating", true)).list().size();
+	}
+
+	@Transactional
+	@Override
+	public long countMinusRatings(int id) {
+		return sessionFactory.getCurrentSession().createCriteria(Rate.class, "rate")
+				.createAlias("rate.news", "news").add(Restrictions.eq("news.newsId", id)).add(Restrictions.eq("rating", false)).list().size();
 	}
 
 }

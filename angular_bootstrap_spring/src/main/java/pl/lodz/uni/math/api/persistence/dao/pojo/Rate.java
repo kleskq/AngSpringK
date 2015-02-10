@@ -19,7 +19,7 @@ public class Rate implements Serializable{
 	@GeneratedValue
 	@Column(name = "RateId")
 	private int rateId;
-	@Column(name = "Rating")
+	@Column(name = "rating")
 	private boolean rating; // true + , false -
 	@ManyToOne
 	@JoinColumn(name = "UserId")

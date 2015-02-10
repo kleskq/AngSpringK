@@ -10,4 +10,8 @@ public interface RateDao {
 	public Rate getRateByUserAndNews(int userId, int newsId);
 
 	public boolean saveRating(Rate rate);
+	
+	public long countPlusRatings(int id);
+	
+	public long countMinusRatings(int id);
 }
