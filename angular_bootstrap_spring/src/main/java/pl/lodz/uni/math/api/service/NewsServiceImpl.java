@@ -60,9 +60,9 @@ public class NewsServiceImpl implements NewsService {
 				}
 			}
 			System.out.println(news.getRates().size());
-			return new NewsDto(news.getNewsTitle(), news.getNewsText(), news.getAuthor().getUserName(), rateDao.countPlusRatings(news.getNewsId()),
-					rateDao.countMinusRatings(news.getNewsId()), news.getCategory().getCategoryName(), news.getCreateDate(), news.getLink(),
-					news.getNewsImageUrl(), rating);
+			return new NewsDto(news.getNewsTitle(), news.getNewsText(), news.getAuthor().getUserName(),
+					rateDao.countPlusRatings(news.getNewsId()), rateDao.countMinusRatings(news.getNewsId()), news.getCategory()
+							.getCategoryName(), news.getCreateDate(), news.getLink(), news.getNewsImageUrl(), rating);
 		}
 	}
 
@@ -82,6 +82,20 @@ public class NewsServiceImpl implements NewsService {
 
 	@Override
 	public boolean saveRate(RateDto rateDto) {
+		News n = newsDao.getNews(rateDto.getNewsId());
+		List<Rate> rates = (List<Rate>) n.getRates();
+
+		for (Rate rate : rates) {
+			if (rate.getEvaluator().getUserName().equals(rateDto.getUserName())) {
+				if (rateDto.getRating() == 1) {
+					rate.setRating(true);
+				} else {
+					rate.setRating(false);
+				}
+			}
+			return rateDao.updateRating(rate);
+		}
+
 		Rate rate = new Rate();
 		rate.setEvaluator(userDao.getUser(rateDto.getUserName()));
 		rate.setNews(newsDao.getNews(rateDto.getNewsId()));

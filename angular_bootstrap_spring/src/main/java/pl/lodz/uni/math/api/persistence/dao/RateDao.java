@@ -11,6 +11,8 @@ public interface RateDao {
 
 	public boolean saveRating(Rate rate);
 	
+	public boolean updateRating(Rate rate);
+	
 	public long countPlusRatings(int id);
 	
 	public long countMinusRatings(int id);
