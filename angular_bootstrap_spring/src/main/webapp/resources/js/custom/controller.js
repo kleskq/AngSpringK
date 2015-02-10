@@ -1,20 +1,8 @@
-app.controller('MainController', function ($rootScope, $scope, $location) {
-    $scope.logout = function () {
-        $scope.$emit('event:logoutRequest');
-
-        $location.path("/main");
-    };
-
-    $scope.login = function (credentials) {
-        $scope.$emit('event:loginRequest', credentials.email, credentials.password);
-
-        $location.path($rootScope.navigateTo);
-    };
-});
+var REST_PREFIX = "/springAngular";
 
 app.controller('NewsListController', function ($rootScope, $scope, $http) {
     // Initially get news list:
-    $http.get('/rest/newslist')
+    $http.get(REST_PREFIX+'/rest/newslist')
         .then(function(response) {
             $scope.newsList = response.data;
         });
@@ -24,7 +12,7 @@ app.controller('NewsListController', function ($rootScope, $scope, $http) {
 app.controller('NewsController', function ($rootScope, $scope, $http, $routeParams) {
     // Initially get news list:
 
-    $http.get('/rest/news/'+$routeParams.newsId)
+    $http.get(REST_PREFIX+'/rest/news/'+$routeParams.newsId)
         .then(function(response) {
             $scope.news = response.data;
         });
@@ -42,7 +30,7 @@ app.controller('NewsController', function ($rootScope, $scope, $http, $routePara
                 $scope.news.rating = vote;
             }
         }
-        $http.post('/rest/ratenote', {newsId: $scope.news.link, rating: vote} );
+        $http.post(REST_PREFIX+'/rest/ratenote', {newsId: $scope.news.link, rating: vote} );
     }
 
 });
@@ -50,7 +38,7 @@ app.controller('NewsCreateController', function ($rootScope, $scope, $http, $loc
     // Initially get news list:
     $scope.news = {category: 'fast note'};
     $scope.addNews = function() {
-        $http.post('/rest/savenews', $scope.news)
+        $http.post('REST_PREFIX+/rest/savenews', $scope.news)
             .then(function(response) {
                // przekieruj na listę newsów:
                 $location.path('/main');
