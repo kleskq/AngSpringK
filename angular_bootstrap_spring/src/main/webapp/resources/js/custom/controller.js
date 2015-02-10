@@ -46,13 +46,14 @@ app.controller('NewsController', function ($rootScope, $scope, $http, $routePara
     }
 
 });
-app.controller('NewsCreateController', function ($rootScope, $scope, $http) {
+app.controller('NewsCreateController', function ($rootScope, $scope, $http, $location) {
     // Initially get news list:
-    $scope.news = {};
+    $scope.news = {category: 'fast note'};
     $scope.addNews = function() {
         $http.post('/rest/savenews', $scope.news)
             .then(function(response) {
                // przekieruj na listę newsów:
+                $location.path('/main');
             });
     }
 

@@ -1,0 +1,18 @@
+
+<div class="content">
+    <div class="news-view">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Tytuł newsa</span>
+            <input type="text" class="form-control" placeholder="..." ng-model="news.title" aria-describedby="basic-addon1">
+        </div>
+        <hr/>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Obrazek</span>
+            <input type="text" class="form-control" placeholder="adres URL obrazka" ng-model="news.image" aria-describedby="basic-addon1">
+        </div>
+        <div>Opis newsa:</div>
+        <textarea style="width: 100%" rows="3" ng-model="news.text"></textarea>
+        <button type="button" class="btn btn-primary navbar-btn" ng-click="addNews()">Zatwierdź!</button>
+    </div>
+</div>

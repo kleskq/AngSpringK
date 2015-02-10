@@ -11,14 +11,10 @@ app.config([ '$routeProvider', '$httpProvider', 'localStorageServiceProvider', f
             controller: 'NewsController',
             templateUrl: 'resources/html/partials/view/news.html'
         })
-		.when('/customer/search', {
-			controller: 'CustomerController',
-			templateUrl: 'resources/html/partials/view/customer_search.html'
-		})
-		.when('/users', {
-            controller: 'UsersController',
-			templateUrl: 'resources/html/partials/view/users.html'
-		})
+        .when('/newscreate', {
+            controller: 'NewsCreateController',
+            templateUrl: 'resources/html/partials/view/newscreate.html'
+        })
 
 		.otherwise({ redirectTo : "/main"});
 	

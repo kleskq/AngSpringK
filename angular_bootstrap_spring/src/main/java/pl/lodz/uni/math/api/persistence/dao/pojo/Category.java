@@ -1,16 +1,8 @@
 package pl.lodz.uni.math.api.persistence.dao.pojo;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "Category")
@@ -24,7 +16,7 @@ public class Category implements Serializable{
 	@GeneratedValue
 	@Column(name = "CategoryId")
 	private int categoryId;
-	@Column(name = "CategoryName")
+	@Column(name = "categoryName")
 	private String categoryName;
 	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<News> news;

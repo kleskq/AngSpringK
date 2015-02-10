@@ -10,11 +10,8 @@
         <script src="resources/js/angular-local-storage/angular-local-storage.js"></script>
 		<script src="resources/js/custom/app.js"></script>
 		<script src="resources/js/custom/config.js"></script>
-		<script src="resources/js/custom/listener.js"></script>
-        <script src="resources/js/custom/directive.js"></script>
 		<script src="resources/js/custom/controller.js"></script>
 		<script src="resources/js/custom/service.js"></script>
-		<script src="resources/js/custom/menu.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap-theme.css">
