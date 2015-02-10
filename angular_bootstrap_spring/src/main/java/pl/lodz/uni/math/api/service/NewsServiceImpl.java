@@ -46,12 +46,12 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public NewsDto getNews(long id) {
+	public NewsDto getNews(long id, String userName) {
 		News news = newsDao.getNews(id);
 		if (news == null) {
 			return null;
 		} else {
-			Rate rate = rateDao.getRateByUserAndNews(news.getAuthor().getId(), news.getNewsId());
+			Rate rate = rateDao.getRateByUserAndNews(userDao.getUser(userName).getId(), news.getNewsId());
 			int rating = 0;
 			if (rate != null) {
 				if (rate.getRating()) {

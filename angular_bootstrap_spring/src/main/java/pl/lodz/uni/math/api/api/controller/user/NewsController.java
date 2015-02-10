@@ -1,23 +1,18 @@
 package pl.lodz.uni.math.api.api.controller.user;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import pl.lodz.uni.math.api.service.NewsService;
 import pl.lodz.uni.math.dto.NewNewsDto;
 import pl.lodz.uni.math.dto.NewsDto;
 import pl.lodz.uni.math.dto.NewsListDto;
 import pl.lodz.uni.math.dto.RateDto;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 public class NewsController {
@@ -33,7 +28,7 @@ public class NewsController {
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 	@RequestMapping(value = "/rest/news/{id:.+}", method = RequestMethod.GET)
 	public NewsDto getNews(@PathVariable("id") long id) {
-		return newsService.getNews(id);
+		return newsService.getNews(id, SecurityContextHolder.getContext().getAuthentication().getName());
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
