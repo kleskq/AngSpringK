@@ -44,8 +44,6 @@ public class News implements Serializable {
 	@OneToMany(mappedBy = "news", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Rate> rates;
 
-	private int plusRating = 0;
-	private int minusRating = 0;
 
 	public int getNewsId() {
 		return newsId;
@@ -119,34 +117,16 @@ public class News implements Serializable {
 		this.rates = rates;
 	}
 
-	public int getPlusRating() {
-		return plusRating;
-	}
-
-	public void setPlusRating(int plusRating) {
-		this.plusRating = plusRating;
-	}
-
-	public int getMinusRating() {
-		return minusRating;
-	}
-
-	public void setMinusRating(int minusRating) {
-		this.minusRating = minusRating;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + (int) (link ^ (link >>> 32));
-		result = prime * result + minusRating;
 		result = prime * result + newsId;
 		result = prime * result + ((newsImageUrl == null) ? 0 : newsImageUrl.hashCode());
 		result = prime * result + ((newsText == null) ? 0 : newsText.hashCode());
 		result = prime * result + ((newsTitle == null) ? 0 : newsTitle.hashCode());
-		result = prime * result + plusRating;
 		return result;
 	}
 
@@ -166,8 +146,6 @@ public class News implements Serializable {
 			return false;
 		if (link != other.link)
 			return false;
-		if (minusRating != other.minusRating)
-			return false;
 		if (newsId != other.newsId)
 			return false;
 		if (newsImageUrl == null) {
@@ -185,16 +163,18 @@ public class News implements Serializable {
 				return false;
 		} else if (!newsTitle.equals(other.newsTitle))
 			return false;
-		if (plusRating != other.plusRating)
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "News [newsId=" + newsId + ", link=" + link + ", newsTitle=" + newsTitle + ", newsText=" + newsText
-				+ ", createDate=" + createDate + ", newsImageUrl=" + newsImageUrl + ", plusRating=" + plusRating
-				+ ", minusRating=" + minusRating + "]";
+				+ ", createDate=" + createDate + ", newsImageUrl=" + newsImageUrl + ", author=" + author + ", category="
+				+ category + ", rates=" + rates + "]";
 	}
+
+
+
+
 
 }
