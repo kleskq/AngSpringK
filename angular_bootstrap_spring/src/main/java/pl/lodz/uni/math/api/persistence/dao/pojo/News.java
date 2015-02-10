@@ -48,6 +48,7 @@ public class News implements Serializable {
 		return newsId;
 	}
 
+	
 	public void setNewsId(int newsId) {
 		this.newsId = newsId;
 	}
