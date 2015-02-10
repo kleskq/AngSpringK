@@ -1,4 +1,17 @@
 var REST_PREFIX = "/springAngular";
+app.controller('MainController', function ($rootScope, $scope, $location) {
+    $scope.logout = function () {
+        $scope.$emit('event:logoutRequest');
+
+        $location.path("/main");
+    };
+
+    $scope.login = function (credentials) {
+        $scope.$emit('event:loginRequest', credentials.email, credentials.password);
+
+        $location.path($rootScope.navigateTo);
+    };
+});
 
 app.controller('NewsListController', function ($rootScope, $scope, $http) {
     // Initially get news list:
@@ -38,7 +51,7 @@ app.controller('NewsCreateController', function ($rootScope, $scope, $http, $loc
     // Initially get news list:
     $scope.news = {category: 'fast note'};
     $scope.addNews = function() {
-        $http.post('REST_PREFIX+/rest/savenews', $scope.news)
+        $http.post(REST_PREFIX+'/rest/savenews', $scope.news)
             .then(function(response) {
                // przekieruj na listę newsów:
                 $location.path('/main');
