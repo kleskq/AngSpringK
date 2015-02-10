@@ -12,22 +12,6 @@ app.controller('MainController', function ($rootScope, $scope, $location) {
     };
 });
 
-app.controller('UsersController', function ($rootScope, $scope, $http) {
-    // Initially get users list:
-    $http.get('/springAngular/rest/users')
-        .then(function(response){
-            $scope.users = response.data;
-        });
-
-    $scope.saveUser = function(user) {
-        $http.post('/springAngular/rest/save', user)
-            .then(function(response) {
-                console.log("User saved, response: ");
-                console.log(response);
-            });
-    }
-});
-
 app.controller('NewsListController', function ($rootScope, $scope, $http) {
     // Initially get news list:
     $http.get('/rest/newslist')
@@ -44,5 +28,32 @@ app.controller('NewsController', function ($rootScope, $scope, $http, $routePara
         .then(function(response) {
             $scope.news = response.data;
         });
+
+    $scope.voteNews = function(vote) {
+        // Update on view:
+        if ($scope.news.rating != vote) {
+            if (vote >= 1) {
+                $scope.news.plus++;
+                if ($scope.news.rating != 0) $scope.news.plus++; // bo już zagłosowałem
+                $scope.news.rating = vote; // zaktualizuj obecny rate
+            } else {
+                $scope.news.minus++;
+                if ($scope.news.rating != 0) $scope.news.minus++;
+                $scope.news.rating = vote;
+            }
+        }
+        $http.post('/rest/ratenote', {newsId: $scope.news.link, rating: vote} );
+    }
+
+});
+app.controller('NewsCreateController', function ($rootScope, $scope, $http) {
+    // Initially get news list:
+    $scope.news = {};
+    $scope.addNews = function() {
+        $http.post('/rest/savenews', $scope.news)
+            .then(function(response) {
+               // przekieruj na listę newsów:
+            });
+    }
 
 });

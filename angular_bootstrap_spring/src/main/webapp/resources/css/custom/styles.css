@@ -62,4 +62,19 @@ div.inline {
     background-repeat: no-repeat;
     margin-left: auto; margin-right: auto;
 }
-.news-view {}
+.news-view {
+
+}
+.news-view .news-rating{
+    float: right;
+}
+.news-rating span[disabled] {
+    opacity: 0.5;
+}
+.news-view p{
+    margin-left: auto; margin-right: auto;
+    width: 70%;
+}
+.news-view .news-author {
+    text-align: right;
+}

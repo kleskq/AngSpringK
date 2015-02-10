@@ -9,7 +9,10 @@
     </div>
     <div class="jumbotron news-view" data-ng-repeat="news in newsList">
         <h2>{{news.title}}</h2>
-        <div style="background-image: url({{news.image}})" class="news-image"></div>
+        <a href="#/news/{{news.link}}">
+            <div style="background-image: url({{news.image}})" class="news-image"></div>
+        </a>
+
         <p><a class="btn btn-primary btn-lg" href="#/news/{{news.link}}" role="button">Więcej</a></p>
     </div>
 </div>

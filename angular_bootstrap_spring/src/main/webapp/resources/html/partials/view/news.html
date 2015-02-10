@@ -1,14 +1,15 @@
 
 <div class="content">
-    <div>
-        <h2>{{news.title}}</h2>
+    <div class="news-view">
+        <h2>{{news.title}}
+            <div class="news-rating">
+                <span class="glyphicon glyphicon-thumbs-down" style="color: darkred" ng-click="voteNews(-1)" ng-disabled="news.rating == -1"></span>
+                {{news.plus - news.minus}}
+                <span class="glyphicon glyphicon-thumbs-up" style="color: forestgreen" ng-click="voteNews(1)" ng-disabled="news.rating == 1"></span>
+            </div></h2>
         <hr/>
         <div style="background-image: url({{news.image}})" class="news-image"></div>
         <p>{{news.text}}</p>
-        <p class="pull-right">-{{news.author}}</p>
-    </div>
-    <div class="jumbotron " data-ng-repeat="news in newsList">
-        <h2>{{news.title}}</h2>
-        <p><a class="btn btn-primary btn-lg" href="#/pojedynczy" role="button">Więcej</a></p>
+        <p class="news-author">-{{news.author}}</p>
     </div>
 </div>
