@@ -62,7 +62,7 @@ public class NewsServiceImpl implements NewsService {
 			System.out.println(news.getRates().size());
 			return new NewsDto(news.getNewsTitle(), news.getNewsText(), news.getAuthor().getUserName(), rateDao.countPlusRatings(news.getNewsId()),
 					rateDao.countMinusRatings(news.getNewsId()), news.getCategory().getCategoryName(), news.getCreateDate(), news.getLink(),
-					news.getNewsImageUrl(), rating);
+					news.getNewsImageUrl(), rating,news.getNewsId());
 		}
 	}
 
