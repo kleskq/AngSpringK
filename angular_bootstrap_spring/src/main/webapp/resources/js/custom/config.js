@@ -4,8 +4,13 @@ app.config([ '$routeProvider', '$httpProvider', 'localStorageServiceProvider', f
 
 	$routeProvider
 		.when('/main', {
-			templateUrl: 'resources/html/partials/view/main.html'
+            controller: 'NewsListController',
+			templateUrl: 'resources/html/partials/view/newslist.html'
 		})
+        .when('/news/:newsId', {
+            controller: 'NewsController',
+            templateUrl: 'resources/html/partials/view/news.html'
+        })
 		.when('/customer/search', {
 			controller: 'CustomerController',
 			templateUrl: 'resources/html/partials/view/customer_search.html'
@@ -14,10 +19,6 @@ app.config([ '$routeProvider', '$httpProvider', 'localStorageServiceProvider', f
             controller: 'UsersController',
 			templateUrl: 'resources/html/partials/view/users.html'
 		})
-        .when('/stats', {
-            controller: 'StatsController',
-            templateUrl: 'resources/html/partials/view/stats.html'
-        })
 
 		.otherwise({ redirectTo : "/main"});
 	
