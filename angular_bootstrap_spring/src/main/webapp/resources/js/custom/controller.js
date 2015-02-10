@@ -12,7 +12,7 @@ app.controller('MainController', function ($rootScope, $scope, $location) {
     };
 });
 
-app.controller('UsersController', function ($rootScope, $scope, $http, CustomerService) {
+app.controller('UsersController', function ($rootScope, $scope, $http) {
     // Initially get users list:
     $http.get('/springAngular/rest/users')
         .then(function(response){
@@ -28,11 +28,21 @@ app.controller('UsersController', function ($rootScope, $scope, $http, CustomerS
     }
 });
 
-app.controller('StatsController', function ($rootScope, $scope, $http, CustomerService) {
-    // Initially get users list:
-    $http.get('/springAngular/rest/noteInfo')
-        .then(function(response){
-            $scope.noteStats = response.data;
+app.controller('NewsListController', function ($rootScope, $scope, $http) {
+    // Initially get news list:
+    $http.get('/rest/newslist')
+        .then(function(response) {
+            $scope.newsList = response.data;
+        });
+
+});
+
+app.controller('NewsController', function ($rootScope, $scope, $http, $routeParams) {
+    // Initially get news list:
+
+    $http.get('/rest/news/'+$routeParams.newsId)
+        .then(function(response) {
+            $scope.news = response.data;
         });
 
 });

@@ -1,0 +1,15 @@
+<div>
+    <h2>Zobacz nasze śmieszne obrazki :-)</h2>
+</div>
+<div class="content">
+    <div>
+        <h2>{{news.title}}</h2>
+
+        <hr/>
+    </div>
+    <div class="jumbotron news-view" data-ng-repeat="news in newsList">
+        <h2>{{news.title}}</h2>
+        <div style="background-image: url({{news.image}})" class="news-image"></div>
+        <p><a class="btn btn-primary btn-lg" href="#/news/{{news.link}}" role="button">Więcej</a></p>
+    </div>
+</div>

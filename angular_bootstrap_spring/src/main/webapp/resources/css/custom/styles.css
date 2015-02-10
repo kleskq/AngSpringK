@@ -54,3 +54,12 @@ div.inline {
  .dropdown {
  	cursor:		pointer !important; 
  }
+.news-image {
+    width:  800px; /*or 70%, or what you want*/
+    height: 500px; /*or 70%, or what you want*/
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: auto; margin-right: auto;
+}
+.news-view {}
