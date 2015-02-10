@@ -52,6 +52,13 @@ public class RateDaoImpl implements RateDao {
 
 	@Transactional
 	@Override
+	public boolean updateRating(Rate rate) {
+		sessionFactory.getCurrentSession().update(rate);
+		return true;
+	}
+	
+	@Transactional
+	@Override
 	public long countPlusRatings(int id) {
 		return sessionFactory.getCurrentSession().createCriteria(Rate.class, "rate")
 				.createAlias("rate.news", "news").add(Restrictions.eq("news.newsId", id)).add(Restrictions.eq("rating", true)).list().size();

@@ -8,31 +8,25 @@ public class NewsDto {
 	private String author;
 	private long plus;
 	private long minus;
-	private String category;
-	private Date createDate;
+	private String Category;
+	private Date CreateDate;
 	private Long link;
 	private String image;
 	private int rating;
-	private int newsId;
 
-
-
-
-
-	public NewsDto(String title, String text, String author, long plus, long minus, String category, Date createDate, Long link,
-			String image, int rating, int newsId) {
+	public NewsDto(String title, String text, String author, long l, long m, String category, Date createDate, Long link,
+			String image, int rating) {
 		super();
 		this.title = title;
 		this.text = text;
 		this.author = author;
-		this.plus = plus;
-		this.minus = minus;
-		this.category = category;
-		this.createDate = createDate;
+		this.plus = l;
+		this.minus = m;
+		Category = category;
+		CreateDate = createDate;
 		this.link = link;
 		this.image = image;
 		this.rating = rating;
-		this.newsId = newsId;
 	}
 
 	public String getTitle() {
@@ -75,22 +69,20 @@ public class NewsDto {
 		this.minus = minus;
 	}
 
-	
-
 	public String getCategory() {
-		return category;
+		return Category;
 	}
 
 	public void setCategory(String category) {
-		this.category = category;
+		Category = category;
 	}
 
 	public Date getCreateDate() {
-		return createDate;
+		return CreateDate;
 	}
 
 	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+		CreateDate = createDate;
 	}
 
 	public Long getLink() {
@@ -117,13 +109,4 @@ public class NewsDto {
 		this.rating = rating;
 	}
 
-	public int getNewsId() {
-		return newsId;
-	}
-
-	public void setNewsId(int newsId) {
-		this.newsId = newsId;
-	}
-
-	
 }
