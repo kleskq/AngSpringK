@@ -44,7 +44,6 @@ public class News implements Serializable {
 	@OneToMany(mappedBy = "news", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Rate> rates;
 
-
 	public int getNewsId() {
 		return newsId;
 	}
