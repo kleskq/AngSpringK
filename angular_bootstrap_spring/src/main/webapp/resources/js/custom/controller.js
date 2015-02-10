@@ -1,4 +1,4 @@
-var REST_PREFIX = "/springAngular";
+var REST_PREFIX = "";
 app.controller('MainController', function ($rootScope, $scope, $location) {
     $scope.logout = function () {
         $scope.$emit('event:logoutRequest');
