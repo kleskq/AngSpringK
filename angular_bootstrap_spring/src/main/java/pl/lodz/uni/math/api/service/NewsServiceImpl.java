@@ -1,12 +1,7 @@
 package pl.lodz.uni.math.api.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeSet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pl.lodz.uni.math.api.persistence.dao.CategoryDao;
 import pl.lodz.uni.math.api.persistence.dao.NewsDao;
 import pl.lodz.uni.math.api.persistence.dao.RateDao;
@@ -17,6 +12,9 @@ import pl.lodz.uni.math.dto.NewNewsDto;
 import pl.lodz.uni.math.dto.NewsDto;
 import pl.lodz.uni.math.dto.NewsListDto;
 import pl.lodz.uni.math.dto.RateDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -92,8 +90,8 @@ public class NewsServiceImpl implements NewsService {
 				} else {
 					rate.setRating(false);
 				}
+                return rateDao.updateRating(rate);
 			}
-			return rateDao.updateRating(rate);
 		}
 
 		Rate rate = new Rate();
