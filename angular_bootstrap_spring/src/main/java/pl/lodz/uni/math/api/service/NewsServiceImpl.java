@@ -2,6 +2,7 @@ package pl.lodz.uni.math.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,9 +84,8 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public boolean saveRate(RateDto rateDto) {
 		News n = newsDao.getNews(rateDto.getNewsId());
-		List<Rate> rates = (List<Rate>) n.getRates();
 
-		for (Rate rate : rates) {
+		for (Rate rate : n.getRates()) {
 			if (rate.getEvaluator().getUserName().equals(rateDto.getUserName())) {
 				if (rateDto.getRating() == 1) {
 					rate.setRating(true);
